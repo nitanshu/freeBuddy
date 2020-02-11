@@ -17,7 +17,6 @@ class TasksController < ApplicationController
     client = get_google_calendar_client current_user
     task = params[:task]
     event = get_event task
-    # byebug
     client.insert_event('primary', event)
     flash[:notice] = 'Task was successfully added.'
     redirect_to tasks_path

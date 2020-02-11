@@ -1,24 +1,24 @@
-# README
+# freeBuddy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+clone the repo
+``` 
+git clone git@github.com:nitanshu/freeBuddy.git
+bundle install
+```
+Create a .env file copy the content from .env.template 
 
-Things you may want to cover:
+Enable google calendar API and create the credentials for google calendar.
+ 
+To create credentials for google calendar please insert these uris in Oauth Consent screen
+ 
+Authorized JavaScript origins
+```
+ http://localhost:3000 in auhtorized origin
+```
 
-* Ruby version
+Authorized redirect URIs
 
-* System dependencies
+```
+http://localhost:3000/users/auth/google_oauth2/callback 
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

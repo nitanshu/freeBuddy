@@ -22,8 +22,19 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-  def get_google_calendar_client current_user
+  def show
+  end
 
+  def edit
+
+  end
+
+  def destroy
+  end
+
+
+  private
+  def get_google_calendar_client current_user
     client = Google::Apis::CalendarV3::CalendarService.new
     return unless (current_user.present? && current_user.access_token.present? && current_user.refresh_token.present?)
     secrets = Google::APIClient::ClientSecrets.new({
@@ -53,19 +64,15 @@ class TasksController < ApplicationController
     client
   end
 
-  private
-
   def get_event task
     attendees = task[:members].split(',').map{ |t| {email: t.strip} }
     event = Google::Apis::CalendarV3::Event.new({
                                                     summary: task[:title],
-                                                    location: '800 Howard St., San Francisco, CA 94103',
+                                                    location: 'India',
                                                     description: task[:description],
                                                     start: {
                                                         date_time: Time.new(task['start_date(1i)'],task['start_date(2i)'],task['start_date(3i)'],task['start_date(4i)'],task['start_date(5i)']).to_datetime.rfc3339,
                                                         time_zone: "Asia/Kolkata"
-                                                        # date_time: '2019-09-07T09:00:00-07:00',
-                                                        # time_zone: 'Asia/Kolkata',
                                                     },
                                                     end: {
                                                         date_time: Time.new(task['end_date(1i)'],task['end_date(2i)'],task['end_date(3i)'],task['end_date(4i)'],task['end_date(5i)']).to_datetime.rfc3339,
